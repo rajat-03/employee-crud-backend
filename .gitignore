@@ -31,3 +31,5 @@ build/
 ### misc ###
 *.env
 .env
+Dockerfile
+.Dockerfile
