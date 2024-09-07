@@ -112,5 +112,11 @@ public class EmployeeServiceImplementation implements EmployeeService{
                 name,department,title,pageable);
     }
 
+    @Override
+    public Page<Employee> searchEmployees(String searchKey, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+        return employeeRepository.searchEmployees(searchKey,pageable);
+    }
+
 
 }

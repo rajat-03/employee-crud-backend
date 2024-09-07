@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin
 public class EmployeeController {
 
     @RequestMapping("/")
@@ -117,6 +117,16 @@ public class EmployeeController {
         return  new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-
+    @GetMapping("/getEmployeeList")
+    public ResponseEntity<PaginatedEmployeeResponseDTO> searchEmployeesByJPQL(@RequestParam(value = "searchTerm") String searchTerm,
+                                                                              @RequestParam(value = "page", defaultValue = "0") int page,
+                                                                              @RequestParam(value = "size", defaultValue = "5")int size) {
+        Page<Employee> employees = employeeService.searchEmployees(searchTerm,page,size);
+        PaginatedEmployeeResponseDTO responseDTO = new PaginatedEmployeeResponseDTO(
+                employees.getTotalElements(),
+                employees.getContent()
+        );
+        return  new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
 
 }

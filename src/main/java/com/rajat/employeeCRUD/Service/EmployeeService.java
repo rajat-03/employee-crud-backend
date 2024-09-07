@@ -29,4 +29,6 @@ public interface EmployeeService {
     public Page<Employee> findAllEmployeeWithPagination(int page, int size);
 
     public Page<Employee> searchEmployeesWithPagination(String name,String department, String title, int page, int size);
+
+    public Page<Employee> searchEmployees(String searchKey, int page, int size);
 }
